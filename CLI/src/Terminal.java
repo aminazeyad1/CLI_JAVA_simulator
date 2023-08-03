@@ -11,7 +11,7 @@ public class Terminal {
     public void clear(){}
     public void cd(String[] args){}
     public void ls(){}
-    public String pwd(){}
+    public void pwd(){}
     public void date() {}
     public void mv(String[] args) {}
     public void rm(String [] args){}
