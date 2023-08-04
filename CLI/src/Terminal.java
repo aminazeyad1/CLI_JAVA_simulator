@@ -1,6 +1,15 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.io.IOException;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
 
 public class Terminal {
     Parser parser; //"Parser" class object
@@ -31,9 +40,26 @@ public class Terminal {
     public void rm(String [] args){}
     public void mkdir (String[] args) {}
     public void rmdir (String[] args){}
-    public void cp (String[] args){} //cp file1.txt file2.txt
+    public void cp (String[] source, String[] destination) throws IOException {
+          Path source = Path.of(sourcePath);
+          Path destination = Path.of(destinationPath);
+        
+        Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+        
+        
+        
+    } //cp file1.txt file2.txt
     public void more (String[] args){}
-    public void cat (String[] args){}
+    public void cat (String[] filePath ) throws IOException{
+        
+           try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        }
+    }
+    
     public void exit (){
         System.exit(0);
     }
